@@ -1,4 +1,4 @@
-function [TP,FP,TN,FN, W] = KFoldValidate(data1, data2,k,lag,eSz)
+function [TP,FP,TN,FN, W] = KFoldValidate(data1, data2,k,lag,eSz,Warg)
 % Takes the parameter k, do the k-fold cross validation and determine
 % average true positive, false positive, true negative and false negative
 
@@ -28,7 +28,7 @@ for II = 1:k
     testT = cat(3,testDat1,testDat2);
     clear testDat1 testDat2  trainDat1 trainDat2;
     
-    [TP(II),FP(II),TN(II),FN(II), W(:,:,II)] = SingleValidate(trainT,testT,lag,eSz);
+    [TP(II),FP(II),TN(II),FN(II), W(:,:,II)] = SingleValidate(trainT,testT,lag,eSz,Warg);
 end
 total = sum([TP(1),FP(1),TN(1),FN(1)]);
 TP = mean(TP)/total; 
