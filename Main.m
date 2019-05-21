@@ -13,7 +13,7 @@ TP = zeros(N,1);FP = zeros(N,1);TN = zeros(N,1);FN = zeros(N,1);
 
 % Append data to save
 W_t = []
-W_t_struct = []
+% W_t_struct = []
 
 
 for k = 1:N
@@ -26,7 +26,7 @@ for k = 1:N
     cd ..
     W2 = mean(W,3);
     W3 = W2(:,[1:3,14:16])
-    W_t_struct = [W_t_struct; {W3}];
+%     W_t_struct = [W_t_struct; {W3}];
     W_t = [W_t; [W3]];
     figure
     for II = 1:6
@@ -61,8 +61,8 @@ for k = 1:N
     [TP(k),FP(k),TN(k),FN(k),W] = KFoldValidate(nts',m',K,lag,eSz);
     cd ..
     W2 = mean(W,3);
-    W3 = W2(:,[1:3,14:16])
-    W_t_struct = [W_t_struct; {W3}];
+    W3 = W2(:,[1:3,14:16]);
+%     W_t_struct = [W_t_struct; {W3}];
     W_t = [W_t; [W3]];
     figure
     for II = 1:6
@@ -78,7 +78,7 @@ FemaleTable = [TP,FP,TN,FN];
 
 cd ../..
 
-BothTable = [MaleTable;FemaleTable]
+BothTable = [MaleTable;FemaleTable];
 
 % save('Spesen', BothTable)
 % save('data_W_t', W_t)
