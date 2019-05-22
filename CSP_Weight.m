@@ -27,7 +27,10 @@ function W = CSP_Weight(E1,E2,Warg)
     if strcmp(Warg,'non')
         W = eye(16);
     elseif  strcmp(Warg,'new')
-        [V,~,~] = svd(P*S1*(P'));
-        W = P'*V;
+        [V1,~,~] = svd(P*S1*(P'));
+        W = P'*V1;
+    elseif  strcmp(Warg,'new2')
+        [V2,~,~] = svd(P*S2*(P'));
+        W = P'*V2;
     end
 end

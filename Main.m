@@ -15,8 +15,8 @@ TP = zeros(N,1);FP = zeros(N,1);TN = zeros(N,1);FN = zeros(N,1);
 W_t = [];
 % W_t_struct = []
 
-CEL = {' ','non','new'};
-for JJ = 1:3   % three cases of weight matrix
+CEL = {' ','non','new','new2'};
+for JJ = 1:4   % three cases of weight matrix
     for k = 1:N
         tic
         str = strcat('cd ./Subj',num2str(k));
