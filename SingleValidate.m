@@ -1,4 +1,4 @@
-function [TP,FP,TN,FN, W] = SingleValidate(trainData,testData,lag,eSz)
+function [TP,FP,TN,FN, W] = SingleValidate(trainData,testData,lag,eSz,Warg)
 % This function computes the accuracy terms given the training- and test
 % data and the epoch lag- and size. Last output argument allows to extract
 % the computed weightmatrix aswell.
@@ -9,7 +9,7 @@ function [TP,FP,TN,FN, W] = SingleValidate(trainData,testData,lag,eSz)
 % testData               : Same as trainData this used for testing the
 % classifier.
 W = (CSP_Weight( squeeze(trainData(:,:,1)), ...
-                            squeeze(trainData(:,:,2)))');
+                            squeeze(trainData(:,:,2)),Warg)');
 % Convert to source space
 trainData = eeg2src( trainData , W);
 testData = eeg2src( testData , W);

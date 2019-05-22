@@ -2,7 +2,7 @@
 % 17/01/19
 % CSP filter
 
-function W = CSP_Weight(E1,E2)
+function W = CSP_Weight(E1,E2,Warg)
     % find Sigma 1 and Sigma 2
     S1 = (E1*E1')/(trace(E1*E1'));
     S2 = (E2*E2')/(trace(E2*E2'));
@@ -24,4 +24,13 @@ function W = CSP_Weight(E1,E2)
     
     W = P';         
 
+    if strcmp(Warg,'non')
+        W = eye(16);
+    elseif  strcmp(Warg,'new')
+        [V1,~,~] = svd(P*S1*(P'));
+        W = P'*V1;
+    elseif  strcmp(Warg,'new2')
+        [V2,~,~] = svd(P*S2*(P'));
+        W = P'*V2;
+    end
 end
