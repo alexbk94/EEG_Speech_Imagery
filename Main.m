@@ -16,7 +16,7 @@ W_t = [];
 % W_t_struct = []
 
 CEL = {' ','non','new','new2'};
-for JJ = 1:4   % three cases of weight matrix
+for JJ = 3:3   % three cases of weight matrix
     for k = 1:N
         tic
         str = strcat('cd ./Subj',num2str(k));
