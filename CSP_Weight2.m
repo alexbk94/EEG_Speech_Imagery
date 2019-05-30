@@ -3,7 +3,7 @@
 % CSP filter
 % This CSP filter takes Covariance matrices of the two classes as input in
 % stead of the signal itself.
-function W = CSP_Weight2(S1,S2,Warg)
+function [W,LAMBDA] = CSP_Weight2(S1,S2,Warg)
     % find Sigma 1 and Sigma 2
 %     S1 = (E1*E1')/(trace(E1*E1'));
 %     S2 = (E2*E2')/(trace(E2*E2'));
@@ -28,7 +28,7 @@ function W = CSP_Weight2(S1,S2,Warg)
     if strcmp(Warg,'non')
         W = eye(16);
     elseif  strcmp(Warg,'new')
-        [V1,~,~] = svd(P*S1*(P'));
+        [V1,LAMBDA,~] = svd(P*S1*(P'));
         W = P'*V1;
     elseif  strcmp(Warg,'new2')
         [V2,~,~] = svd(P*S2*(P'));

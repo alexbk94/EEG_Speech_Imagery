@@ -6,8 +6,6 @@ clear all;% close all; clc;
 addpath('.')
 cd ./recordings/MaleSubjs
 K = 10;     % k-fold validation
-eSz = 600;
-lag = 500;
 d = dir;
 D = {d.name}; clear d;
 N = length(D)-2;
@@ -16,7 +14,7 @@ N = length(D)-2;
 TP = zeros(N,1);FP = zeros(N,1);TN = zeros(N,1);FN = zeros(N,1);
 
 % Tags deciding which 2 datasets to compare. (1 = nts, 2 = m, 3=smi, 4=mi)
-tag1 = 2;
+tag1 = 1;
 tag2 = 3;
 
 if (tag1==tag2 || tag1>4 || tag2>4 || tag1<1 || tag2<1)
@@ -32,7 +30,7 @@ for k = 1:N
     CCC = [{nts},{m},{smi},{mi}]; % For indexing with tags
     E1 = CCC{tag1}';
     E2 = CCC{tag2}';
-    
+
     % Covariance matrices stacked in 3rd dimension
     C1(:,:,k) = (E1*E1')/(trace(E1*E1'));
     C2(:,:,k) = (E2*E2')/(trace(E2*E2'));
@@ -69,13 +67,16 @@ cd ../..
 S1 = mean(C1,3);
 S2 = mean(C2,3);
 
-W = CSP_Weight2(S1,S2,'new');
-W_plot_temp = [W(:,1),W(:,end),W(:,2),W(:,end-1),W(:,3),W(:,end-2)];
+[W,LAM] = CSP_Weight2(S1,S2,'new');
+clear col_idx
+Q = 3;  % Number of topomaps per class
+col_idx(1:2:(2*Q-1)) = 1:Q;
+col_idx(2:2:(2*Q)) = 16:-1:(16-Q+1);
 
-fig1 = figure(1);
-for k = 1:6
-    subplot(3,2,k)
-    topoplot(W_plot_temp(:,k),'channel_locations.loc');
+fig2 = figure(2);
+for k = 1:(2*Q)
+    subplot(Q,2,k)
+    topoplot(W(:,col_idx(k)),'channel_locations.loc');
 end
 
 % save('Spesen', BothTable)
