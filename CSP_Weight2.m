@@ -2,7 +2,8 @@
 % 26/05/19
 % CSP filter
 % This CSP filter takes Covariance matrices of the two classes as input in
-% stead of the signal itself.
+% stead of the signal itself. Adapted version to generate population
+% averaged filters
 function [W,LAMBDA] = CSP_Weight2(S1,S2,Warg)
     % find Sigma 1 and Sigma 2
 %     S1 = (E1*E1')/(trace(E1*E1'));

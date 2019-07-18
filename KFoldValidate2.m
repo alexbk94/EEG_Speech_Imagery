@@ -1,4 +1,4 @@
-function [TP,FP,TN,FN, W] = KFoldValidate(data1, data2,k,lag,eSz,Warg)
+function [Xout,Yout,Tout,AUCout,CMout] = KFoldValidate2(data1, data2,k,lag,eSz,Warg)
 % Takes the parameter k, do the k-fold cross validation and determine
 % average true positive, false positive, true negative and false negative
 
@@ -8,8 +8,8 @@ nChl = size(data1,1);
 nSamp = floor(len/k);
 
 % Pre allocation
-TP = zeros(k,1);FP = zeros(k,1);TN = zeros(k,1);FN = zeros(k,1);
-W = zeros(nChl,nChl,k);
+X = zeros(121,k); Y = zeros(121,k); T = zeros(121,k); AUC = zeros(k,1);
+CM = zeros(2,2,k);
 
 for II = 1:k
     idx1 = nSamp*(II-1)+1;
@@ -29,10 +29,11 @@ for II = 1:k
     trainT = cat(3,trainDat1,trainDat2);
     clear testDat1 testDat2  trainDat1 trainDat2;
     
-    [TP(II),FP(II),TN(II),FN(II), W(:,:,II)] = SingleValidate(trainT,testT,lag,eSz,Warg);
+    [X(:,II),Y(:,II),T(:,II),AUC(II), CM(:,:,II)] = SingleValidate2(trainT,testT,lag,eSz,Warg);
 end
-total = sum([TP(1),FP(1),TN(1),FN(1)]);     % Total number of classifications stay same
-TP = mean(TP)/total; 
-FP = mean(FP)/total;
-TN = mean(TN)/total;
-FN = mean(FN)/total;
+
+Xout = mean(X,2);
+Yout = mean(Y,2);
+Tout = mean(T,2);
+AUCout = mean(AUC);
+CMout = sum(CM,3);

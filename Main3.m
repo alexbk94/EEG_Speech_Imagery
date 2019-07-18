@@ -7,7 +7,7 @@ figure
 % 'topoplot' script. This has to be manually corrected. A temporary
 % solution: write 'edit topoplot' in the command window. Go to line 616 and
 % replace the input to the 'if-statement' with 'false'.
-topoplot(zer,'channel_locations.loc','electrodes','labels','style','blank','efontsize',10)
+topoplot(zer,'channel_locations.loc','electrodes','labels','style','blank','efontsize',13)
 %% Figure adjustment prior to saving
 % Get figure- and axes handle
 f = gcf; a = gca;
