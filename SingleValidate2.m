@@ -9,7 +9,7 @@ function [X,Y,T,AUC, CM] = SingleValidate2(trainData,testData,lag,eSz,Warg)
 % testData               : Same as trainData this used for testing the
 % classifier.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% This update (SingleValide2) returns ROC coordinates for plotting in stead
+% This update (SingleValidate2) returns ROC coordinates for plotting in stead
 % of the Confusion matrix
 W = (CSP_Weight( squeeze(trainData(:,:,1)), ...
                             squeeze(trainData(:,:,2)),Warg)');
