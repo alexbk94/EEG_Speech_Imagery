@@ -1,5 +1,5 @@
-function fig = ROCplotter(X,Y)
-
+function fig = ROCplotter(X,Y) % OBSOLETE
+% This plotter function is note used anymore. Go to ROCplotter2
 quant = [0, 0.25, 0.5, 0.75, 1];
 mY = mean(Y,2);
 mX = mean(X,2);

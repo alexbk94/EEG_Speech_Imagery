@@ -1,6 +1,7 @@
 function [Xout,Yout,Tout,AUCout,CMout] = KFoldValidate2(data1, data2,k,lag,eSz,Warg)
-% Takes the parameter k, do the k-fold cross validation and determine
-% average true positive, false positive, true negative and false negative
+% This function is a modification of KFoldValidate, so that instead of
+% getting out true- and false- -positives and negatives, it outputs
+% parameters from individual ROC curves
 
 % Assing data1 and data2 are equally long
 len = size(data1,2);

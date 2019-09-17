@@ -1,6 +1,7 @@
 % % This script is supposed to generate curves demonstrating accuracy from
 % % epoch length.
 % 
+%% Manually modify input for KFoldValidate to compare different paradigms
 clear all; close all; clc;
 % addpath('.')
 % 
@@ -25,7 +26,7 @@ clear all; close all; clc;
 % end
 
 
-%% Save data
+%% Save data - 
 % save('EpochVSAccuracySInt.mat','eSz','accurTable')
 
 %% Make and save figures
